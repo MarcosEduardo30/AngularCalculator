@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { InvestResultsService } from '../shared/investment-results.service';
 
 @Component({
   selector: 'app-user-input',
@@ -14,7 +15,16 @@ export class UserInputComponent {
   @Input() ExpReturn?: string;
   @Input() Duration?: string;
 
+  constructor(private investResultService: InvestResultsService){}
+
 
   onCalculateClick(){
+    if(this.IniInves && this.AnnualInves && this.ExpReturn && this.Duration){
+      this.investResultService.calculateInvestmentResults(+this.IniInves, +this.AnnualInves, +this.ExpReturn, +this.Duration)
+    }
+    else{
+      console.log('Aí não né parça')
+    }
+    
   }
 }

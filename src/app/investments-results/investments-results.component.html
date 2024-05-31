@@ -1,0 +1,26 @@
+@if (investResultService.investmentResult) {
+    <table>
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Investment Value</th>
+                <th>Interest (Year)</th>
+                <th>Total Interest</th>
+                <th>Invested Capital</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of this.investResultService.investmentResult; track $index) {
+                <tr>
+                    <td>{{item.year }}</td>
+                    <td>{{item.totalAmountInvested | currency: 'BRL': true}}</td>
+                    <td>{{item.interest | currency: 'BRL': true}}</td>
+                    <td>{{item.totalInterest | currency: 'BRL': true}}</td>
+                    <td>{{item.valueEndOfYear | currency: 'BRL': true}}</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+} @else {
+    <h2>Calcule seu investimento!</h2>
+}
